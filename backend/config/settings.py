@@ -10,7 +10,8 @@ SECRET_KEY=os.getenv("SECRET_KEY","dev-only-change-this-to-a-64-character-random
 DEBUG=env_bool("DEBUG",True)
 ALLOWED_HOSTS=env_list("ALLOWED_HOSTS","localhost,127.0.0.1,0.0.0.0")
 INSTALLED_APPS=["django.contrib.admin","django.contrib.auth","django.contrib.contenttypes","django.contrib.sessions","django.contrib.messages","django.contrib.staticfiles","corsheaders","rest_framework","rest_framework_simplejwt.token_blacklist","accounts","students","dashboard","coding","assessments","assignments","courses","codeathons","interviews","attendance","gamification","notifications","reports"]
-MIDDLEWARE=["corsheaders.middleware.CorsMiddleware","django.middleware.security.SecurityMiddleware","django.contrib.sessions.middleware.SessionMiddleware","django.middleware.common.CommonMiddleware","django.middleware.csrf.CsrfViewMiddleware","django.contrib.auth.middleware.AuthenticationMiddleware","django.contrib.messages.middleware.MessageMiddleware","django.middleware.clickjacking.XFrameOptionsMiddleware"]
+MIDDLEWARE=["corsheaders.middleware.CorsMiddleware","django.middleware.security.SecurityMiddleware",
+            "whitenoise.middleware.WhiteNoiseMiddleware","django.contrib.sessions.middleware.SessionMiddleware","django.middleware.common.CommonMiddleware","django.middleware.csrf.CsrfViewMiddleware","django.contrib.auth.middleware.AuthenticationMiddleware","django.contrib.messages.middleware.MessageMiddleware","django.middleware.clickjacking.XFrameOptionsMiddleware"]
 ROOT_URLCONF="config.urls"
 TEMPLATES=[{"BACKEND":"django.template.backends.django.DjangoTemplates","DIRS":[],"APP_DIRS":True,"OPTIONS":{"context_processors":["django.template.context_processors.request","django.contrib.auth.context_processors.auth","django.contrib.messages.context_processors.messages"]}}]
 WSGI_APPLICATION="config.wsgi.application"; ASGI_APPLICATION="config.asgi.application"
@@ -49,3 +50,16 @@ EMAIL_BACKEND=os.getenv("EMAIL_BACKEND","django.core.mail.backends.console.Email
 EMAIL_HOST=os.getenv("EMAIL_HOST",""); EMAIL_PORT=int(os.getenv("EMAIL_PORT","587")); EMAIL_HOST_USER=os.getenv("EMAIL_HOST_USER",""); EMAIL_HOST_PASSWORD=os.getenv("EMAIL_HOST_PASSWORD",""); EMAIL_USE_TLS=env_bool("EMAIL_USE_TLS",True); EMAIL_USE_SSL=env_bool("EMAIL_USE_SSL",False)
 CODE_EXECUTION_ENABLED=env_bool("CODE_EXECUTION_ENABLED",DEBUG)
 MAX_UPLOAD_SIZE=int(os.getenv("MAX_UPLOAD_SIZE","10485760"))
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage"
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    },
+}
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = not DEBUG

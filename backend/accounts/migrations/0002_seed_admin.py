@@ -1,3 +1,4 @@
+import os
 from django.contrib.auth.hashers import make_password
 from django.db import migrations
 
@@ -5,20 +6,17 @@ from django.db import migrations
 def seed_admin(apps, schema_editor):
     User = apps.get_model("accounts", "User")
 
+    password = os.environ["Admin@123"]
+
     user = User.objects.filter(username="Admin").first()
-    if user is None:
-        user = User.objects.filter(email__iexact="admin@scott.local").first()
 
     if user is None:
-        user = User(username="Admin", email="admin@scott.local")
-        user.password = make_password("Admin@1234")
-    else:
-        # Keep the requested Admin identity and privileges if an older
-        # database already contains the account.
-        user.username = "Admin"
-        user.email = "admin@scott.local"
+        user = User(
+            username="Admin",
+            email="admin@scott.local",
+        )
+        user.password = make_password(password)
 
-    user.password = make_password("Admin@1234")
     user.role = "ADMIN"
     user.is_staff = True
     user.is_superuser = True
@@ -33,5 +31,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(seed_admin, migrations.RunPython.noop),
+        migrations.RunPython(
+            seed_admin,
+            migrations.RunPython.noop,
+        ),
     ]

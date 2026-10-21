@@ -1,0 +1,2432 @@
+/* =========================================================
+   SCOTT STUDENT LOGIN
+   Student Career & Learning Platform
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.scott-login-page {
+  min-height: 100vh;
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 34px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 7% 10%,
+      rgba(37, 99, 235, 0.15),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 94% 85%,
+      rgba(124, 58, 237, 0.12),
+      transparent 29%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(14, 165, 233, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f8fbff 0%,
+      #eef5ff 48%,
+      #faf8ff 100%
+    );
+
+  color: #172033;
+
+  font-family:
+    Inter,
+    Poppins,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* =========================================================
+   GRID BACKGROUND
+   ========================================================= */
+
+.scott-grid-background {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(100, 116, 139, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(100, 116, 139, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      black 60%,
+      transparent 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   GLOWS
+   ========================================================= */
+
+.scott-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(4px);
+
+  pointer-events: none;
+
+  animation: scottGlowFloat 10s ease-in-out infinite;
+}
+
+.scott-glow-one {
+  width: 260px;
+  height: 260px;
+
+  left: -90px;
+  top: 8%;
+
+  background: rgba(37, 99, 235, 0.075);
+}
+
+.scott-glow-two {
+  width: 320px;
+  height: 320px;
+
+  right: -120px;
+  bottom: 1%;
+
+  background: rgba(124, 58, 237, 0.075);
+
+  animation-delay: 2s;
+}
+
+.scott-glow-three {
+  width: 150px;
+  height: 150px;
+
+  right: 31%;
+  top: -70px;
+
+  background: rgba(14, 165, 233, 0.07);
+
+  animation-delay: 4s;
+}
+
+@keyframes scottGlowFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-15px) scale(1.04);
+  }
+}
+
+/* =========================================================
+   FLOATING ICONS
+   ========================================================= */
+
+.floating-icon {
+  position: absolute;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.76);
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 15px 35px rgba(15, 23, 42, 0.07);
+
+  backdrop-filter: blur(12px);
+
+  z-index: 1;
+
+  animation: floatingIcon 6s ease-in-out infinite;
+}
+
+.floating-icon-one {
+  left: 4%;
+  top: 25%;
+
+  color: #2563eb;
+}
+
+.floating-icon-two {
+  right: 6%;
+  top: 17%;
+
+  color: #f59e0b;
+
+  animation-delay: 1.2s;
+}
+
+.floating-icon-three {
+  right: 10%;
+  bottom: 20%;
+
+  color: #7c3aed;
+
+  animation-delay: 2.4s;
+}
+
+.floating-icon-four {
+  left: 47%;
+  top: 6%;
+
+  color: #10b981;
+
+  animation-delay: 3.2s;
+}
+
+@keyframes floatingIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.scott-login-container {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(1240px, 100%);
+
+  min-height: 720px;
+
+  display: grid;
+
+  grid-template-columns: 57% 43%;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 40px 100px rgba(15, 23, 42, 0.1),
+    0 12px 30px rgba(15, 23, 42, 0.05);
+
+  backdrop-filter: blur(25px);
+
+  animation: scottContainerAppear 0.65s ease both;
+}
+
+@keyframes scottContainerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   COMPANY PANEL
+   ========================================================= */
+
+.scott-company-panel {
+  position: relative;
+
+  overflow: hidden;
+
+  border-right: 1px solid #e6ebf3;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f7fbff 0%,
+      #edf5ff 55%,
+      #f6f3ff 100%
+    );
+}
+
+.scott-company-panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 460px;
+  height: 460px;
+
+  right: -220px;
+  bottom: -240px;
+
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.055);
+}
+
+.scott-company-panel::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  left: -130px;
+  top: -100px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(37, 99, 235, 0.08);
+}
+
+/* =========================================================
+   COMPANY CONTENT
+   ========================================================= */
+
+.scott-company-content {
+  height: 100%;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 44px 52px;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.scott-brand,
+.scott-mobile-brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+.scott-brand-logo {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  box-shadow:
+    0 10px 25px rgba(37, 99, 235, 0.23);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.scott-brand-logo:hover {
+  transform: translateY(-2px) rotate(-2deg);
+
+  box-shadow:
+    0 13px 28px rgba(37, 99, 235, 0.28);
+}
+
+.scott-brand-name {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.scott-brand-name strong {
+  color: #111827;
+
+  font-size: 21px;
+
+  line-height: 1;
+
+  letter-spacing: -0.6px;
+
+  font-weight: 800;
+}
+
+.scott-brand-name span {
+  color: #64748b;
+
+  font-size: 10px;
+
+  letter-spacing: 0.25px;
+
+  line-height: 1.3;
+}
+
+/* =========================================================
+   BRAND STATEMENT
+   ========================================================= */
+
+.scott-brand-statement {
+  margin-top: 14px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15px;
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.scott-company-badge {
+  width: fit-content;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 40px;
+
+  padding: 8px 13px;
+
+  border: 1px solid #dbeafe;
+
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.67);
+
+  color: #2563eb;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2px;
+}
+
+.scott-live-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  box-shadow:
+    0 0 0 5px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================================================
+   COMPANY HEADING
+   ========================================================= */
+
+.scott-company-heading {
+  max-width: 590px;
+
+  margin-top: 22px;
+}
+
+.scott-company-heading h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: clamp(45px, 4.4vw, 66px);
+
+  line-height: 0.98;
+
+  letter-spacing: -4px;
+
+  font-weight: 800;
+}
+
+.scott-company-heading h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #7c3aed
+    );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+.scott-company-heading p {
+  max-width: 535px;
+
+  margin: 19px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   JOURNEY
+   ========================================================= */
+
+.scott-journey-section {
+  margin-top: 24px;
+}
+
+.scott-section-label {
+  margin-bottom: 11px;
+
+  color: #94a3b8;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.scott-journey {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    16px
+    1fr
+    16px
+    1fr
+    16px
+    1fr;
+
+  align-items: center;
+
+  max-width: 575px;
+
+  padding: 12px;
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.63);
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.035);
+}
+
+.scott-journey-item {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  position: relative;
+}
+
+.scott-journey-number {
+  color: #a1acbb;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+}
+
+.scott-journey-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  color: #2563eb;
+
+  background: #eaf2ff;
+}
+
+.scott-journey-icon.purple {
+  color: #7c3aed;
+  background: #f1eaff;
+}
+
+.scott-journey-icon.orange {
+  color: #f59e0b;
+  background: #fff5df;
+}
+
+.scott-journey-icon.green {
+  color: #10b981;
+  background: #e7faf3;
+}
+
+.scott-journey-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.scott-journey-content strong {
+  color: #1e293b;
+
+  font-size: 10px;
+}
+
+.scott-journey-content span {
+  color: #94a3b8;
+
+  font-size: 8px;
+
+  line-height: 1.3;
+}
+
+.scott-journey-line {
+  height: 1px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #cbd5e1 0,
+      #cbd5e1 3px,
+      transparent 3px,
+      transparent 6px
+    );
+}
+
+/* =========================================================
+   ACHIEVEMENT CARD
+   ========================================================= */
+
+.scott-achievement-card {
+  max-width: 575px;
+
+  display: grid;
+
+  grid-template-columns: 40px 1fr auto;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 13px;
+
+  padding: 13px 15px;
+
+  border: 1px solid rgba(191, 219, 254, 0.9);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 246, 255, 0.92),
+      rgba(248, 245, 255, 0.92)
+    );
+}
+
+.scott-achievement-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  color: #f59e0b;
+
+  background: #fff7df;
+}
+
+.scott-achievement-main {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.scott-achievement-main strong {
+  color: #1e293b;
+
+  font-size: 10px;
+}
+
+.scott-achievement-main span {
+  color: #64748b;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+.scott-achievement-stats {
+  display: flex;
+
+  gap: 17px;
+}
+
+.scott-achievement-stats div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.scott-achievement-stats strong {
+  color: #2563eb;
+
+  font-size: 13px;
+}
+
+.scott-achievement-stats span {
+  color: #94a3b8;
+
+  font-size: 8px;
+}
+
+/* =========================================================
+   MINI FEATURES
+   ========================================================= */
+
+.scott-feature-mini-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 7px 18px;
+
+  max-width: 575px;
+
+  margin-top: 14px;
+}
+
+.scott-mini-feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #64748b;
+
+  font-size: 9px;
+}
+
+.scott-mini-feature svg {
+  flex-shrink: 0;
+
+  color: #2563eb;
+}
+
+/* =========================================================
+   COMPANY STATS
+   ========================================================= */
+
+.scott-company-stats {
+  display: flex;
+
+  gap: 45px;
+
+  margin-top: auto;
+
+  padding-top: 18px;
+}
+
+.scott-company-stats div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.scott-company-stats strong {
+  color: #172033;
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+.scott-company-stats span {
+  color: #94a3b8;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   COMPANY NOTE
+   ========================================================= */
+
+.scott-company-note {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 10px;
+
+  color: #94a3b8;
+
+  font-size: 8px;
+}
+
+.scott-company-note svg {
+  color: #2563eb;
+}
+
+/* =========================================================
+   LOGIN PANEL
+   ========================================================= */
+
+.scott-login-panel {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 48px 58px;
+
+  background: #ffffff;
+}
+
+.scott-login-card {
+  width: min(430px, 100%);
+
+  animation:
+    loginCardAppear
+    0.7s ease 0.12s both;
+}
+
+@keyframes loginCardAppear {
+  from {
+    opacity: 0;
+
+    transform: translateX(18px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+/* =========================================================
+   MOBILE BRAND
+   ========================================================= */
+
+.scott-mobile-brand {
+  display: none;
+}
+
+/* =========================================================
+   LOGIN HEADING
+   ========================================================= */
+
+.scott-login-heading {
+  margin-bottom: 27px;
+}
+
+.scott-heading-label {
+  margin-bottom: 9px;
+
+  color: #2563eb;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+.scott-login-heading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 39px;
+
+  line-height: 1.08;
+
+  letter-spacing: -1.9px;
+
+  font-weight: 800;
+}
+
+.scott-login-heading h2 span {
+  color: #2563eb;
+}
+
+.scott-login-heading p {
+  max-width: 370px;
+
+  margin: 11px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.scott-login-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.scott-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.scott-form-group label,
+.scott-label-row label {
+  color: #334155;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.scott-label-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scott-forgot-button {
+  border: none;
+
+  padding: 0;
+
+  background: none;
+
+  color: #2563eb;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.scott-forgot-button:hover {
+  color: #1d4ed8;
+
+  text-decoration: underline;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.scott-input-wrapper {
+  height: 53px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  border: 1px solid #dce3ed;
+
+  border-radius: 13px;
+
+  background: #fbfcfe;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.scott-input-wrapper:hover {
+  border-color: #cbd5e1;
+
+  background: #ffffff;
+}
+
+.scott-input-wrapper:focus-within {
+  border-color: #60a5fa;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+.scott-input-icon {
+  flex-shrink: 0;
+
+  margin-left: 15px;
+
+  color: #94a3b8;
+
+  transition: color 0.2s ease;
+}
+
+.scott-input-wrapper:focus-within .scott-input-icon {
+  color: #2563eb;
+}
+
+.scott-input-wrapper input {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  padding: 0 13px;
+
+  color: #1e293b;
+
+  font-size: 13px;
+}
+
+.scott-input-wrapper input::placeholder {
+  color: #a1acbb;
+}
+
+/* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+.scott-password-toggle {
+  width: 44px;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #94a3b8;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.scott-password-toggle:hover {
+  color: #2563eb;
+}
+
+/* =========================================================
+   REMEMBER ME
+   ========================================================= */
+
+.scott-form-options {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: -4px;
+}
+
+.scott-remember {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #64748b;
+
+  font-size: 10px;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.scott-remember input {
+  position: absolute;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.scott-custom-checkbox {
+  width: 17px;
+  height: 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 5px;
+
+  color: transparent;
+
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.scott-remember input:checked + .scott-custom-checkbox {
+  border-color: #2563eb;
+
+  color: white;
+
+  background: #2563eb;
+}
+
+.scott-remember input:focus-visible + .scott-custom-checkbox {
+  outline: 3px solid rgba(37, 99, 235, 0.14);
+}
+
+.scott-login-helper {
+  color: #a1acbb;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.scott-message {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 11px 12px;
+
+  border-radius: 11px;
+
+  font-size: 11px;
+
+  animation: messageAppear 0.25s ease;
+}
+
+.scott-message p {
+  margin: 1px 0 0;
+
+  line-height: 1.5;
+}
+
+.scott-message-icon {
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+.scott-error {
+  border: 1px solid #fee2e2;
+
+  color: #b91c1c;
+
+  background: #fff7f7;
+}
+
+.scott-error .scott-message-icon {
+  background: #fee2e2;
+}
+
+.scott-success {
+  border: 1px solid #bbf7d0;
+
+  color: #15803d;
+
+  background: #f0fdf4;
+}
+
+.scott-success-icon {
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: #16a34a;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.scott-login-button {
+  width: 100%;
+
+  height: 53px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: none;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 25px rgba(37, 99, 235, 0.2);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.scott-login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 17px 35px rgba(37, 99, 235, 0.27);
+}
+
+.scott-login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.scott-login-button:disabled {
+  opacity: 0.72;
+
+  cursor: not-allowed;
+}
+
+.scott-button-arrow {
+  transition: transform 0.2s ease;
+}
+
+.scott-login-button:hover:not(:disabled) .scott-button-arrow {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   SPINNER
+   ========================================================= */
+
+.scott-spinner {
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  border-top-color: white;
+
+  border-radius: 50%;
+
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   AUTH METHOD
+   ========================================================= */
+
+.scott-auth-method {
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.scott-auth-method span {
+  height: 1px;
+
+  background: #edf1f6;
+}
+
+.scott-auth-method p {
+  margin: 0;
+
+  color: #a1acbb;
+
+  font-size: 9px;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   REGISTER
+   ========================================================= */
+
+.scott-register-section {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  margin-top: 20px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.scott-register-section a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #2563eb;
+
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.scott-register-section a:hover {
+  color: #1d4ed8;
+
+  gap: 7px;
+}
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
+
+.scott-security {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 25px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid #edf1f6;
+
+  text-align: left;
+}
+
+.scott-security-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  color: #2563eb;
+
+  background: #eff6ff;
+}
+
+.scott-security > div:last-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.scott-security strong {
+  color: #64748b;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+.scott-security span {
+  color: #a1acbb;
+
+  font-size: 8px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.scott-login-footer {
+  position: absolute;
+
+  bottom: 11px;
+
+  left: 0;
+  right: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color: #94a3b8;
+
+  font-size: 8px;
+
+  z-index: 10;
+}
+
+.footer-dot {
+  color: #cbd5e1;
+}
+
+/* =========================================================
+   CARTOON CHARACTER
+   ========================================================= */
+
+.scott-cartoon-avatar {
+  position: relative;
+
+  width: 31px;
+  height: 31px;
+
+  margin-right: 11px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e0f2fe,
+      #bae6fd
+    );
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 2px 5px rgba(37, 99, 235, 0.14);
+
+  transition:
+    transform 0.25s ease;
+}
+
+.scott-cartoon-avatar:hover {
+  transform: scale(1.06);
+}
+
+.cartoon-face {
+  position: relative;
+
+  width: 22px;
+  height: 22px;
+}
+
+.cartoon-eyes {
+  display: flex;
+
+  justify-content: space-between;
+
+  width: 14px;
+
+  position: absolute;
+
+  top: 6px;
+  left: 4px;
+}
+
+.cartoon-eye {
+  width: 3px;
+  height: 5px;
+
+  background: #1e293b;
+
+  border-radius: 50%;
+
+  transition: all 0.2s ease;
+}
+
+.cartoon-blush {
+  position: absolute;
+
+  width: 4px;
+  height: 2px;
+
+  background: rgba(244, 63, 94, 0.35);
+
+  border-radius: 50%;
+
+  top: 11px;
+}
+
+.cartoon-blush.left {
+  left: 2px;
+}
+
+.cartoon-blush.right {
+  right: 2px;
+}
+
+.cartoon-mouth {
+  position: absolute;
+
+  bottom: 4px;
+  left: 7px;
+
+  width: 8px;
+  height: 4px;
+
+  border-bottom: 2px solid #1e293b;
+
+  border-radius: 0 0 8px 8px;
+}
+
+.scott-cartoon-avatar.eyes-closed .cartoon-eye {
+  height: 1px;
+
+  background: #1e293b;
+
+  transform: translateY(2px);
+}
+
+.scott-cartoon-avatar.eyes-closed .cartoon-mouth {
+  width: 6px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: #1e293b;
+
+  left: 8px;
+  bottom: 3px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .scott-login-page {
+    padding: 24px;
+  }
+
+  .scott-login-container {
+    grid-template-columns: 55% 45%;
+
+    min-height: 690px;
+  }
+
+  .scott-company-content {
+    padding: 40px 38px;
+  }
+
+  .scott-login-panel {
+    padding: 42px 38px;
+  }
+
+  .scott-company-heading h1 {
+    font-size: 54px;
+  }
+
+  .scott-journey {
+    max-width: 100%;
+  }
+
+  .scott-achievement-card {
+    max-width: 100%;
+  }
+
+  .scott-feature-mini-grid {
+    max-width: 100%;
+  }
+
+  .scott-company-stats {
+    gap: 28px;
+  }
+}
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .scott-login-page {
+    padding: 20px;
+  }
+
+  .scott-login-container {
+    grid-template-columns: 1fr;
+
+    max-width: 560px;
+
+    min-height: auto;
+  }
+
+  .scott-company-panel {
+    display: none;
+  }
+
+  .scott-login-panel {
+    padding: 48px 44px;
+  }
+
+  .scott-mobile-brand {
+    display: flex;
+
+    margin-bottom: 38px;
+  }
+
+  .floating-icon {
+    display: none;
+  }
+
+  .scott-login-card {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .scott-login-page {
+    min-height: 100vh;
+
+    padding: 0;
+
+    background:
+      radial-gradient(
+        circle at 5% 5%,
+        rgba(37, 99, 235, 0.12),
+        transparent 30%
+      ),
+      linear-gradient(
+        135deg,
+        #f8fbff,
+        #eef5ff
+      );
+  }
+
+  .scott-login-container {
+    width: 100%;
+
+    min-height: 100vh;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    background: #ffffff;
+  }
+
+  .scott-login-panel {
+    min-height: 100vh;
+
+    align-items: flex-start;
+
+    padding: 30px 22px 70px;
+  }
+
+  .scott-mobile-brand {
+    margin-bottom: 34px;
+  }
+
+  .scott-mobile-brand .scott-brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .scott-brand-name strong {
+    font-size: 19px;
+  }
+
+  .scott-login-heading {
+    margin-bottom: 25px;
+  }
+
+  .scott-login-heading h2 {
+    font-size: 32px;
+
+    letter-spacing: -1.4px;
+  }
+
+  .scott-login-heading p {
+    font-size: 12px;
+  }
+
+  .scott-login-form {
+    gap: 17px;
+  }
+
+  .scott-input-wrapper {
+    height: 51px;
+  }
+
+  .scott-login-button {
+    height: 51px;
+  }
+
+  .scott-form-options {
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .scott-login-helper {
+    display: none;
+  }
+
+  .scott-register-section {
+    margin-top: 19px;
+  }
+
+  .scott-security {
+    margin-top: 23px;
+  }
+
+  .scott-login-footer {
+    display: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .scott-login-panel {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .scott-login-heading h2 {
+    font-size: 29px;
+  }
+
+  .scott-brand-name span {
+    max-width: 190px;
+  }
+
+  .scott-security span {
+    font-size: 7px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* =========================================================
+   FORGOT PASSWORD MODAL
+   ========================================================= */
+
+.scott-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(15, 23, 42, 0.34);
+
+  backdrop-filter: blur(8px);
+
+  animation:
+    scottModalOverlayIn
+    0.22s ease both;
+}
+
+@keyframes scottModalOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.scott-forgot-modal {
+  width: min(440px, 100%);
+
+  position: relative;
+
+  padding: 34px;
+
+  border: 1px solid rgba(226, 232, 240, 0.95);
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 30px 90px rgba(15, 23, 42, 0.18),
+    0 5px 20px rgba(15, 23, 42, 0.07);
+
+  backdrop-filter: blur(20px);
+
+  animation:
+    scottModalIn
+    0.3s ease both;
+}
+
+@keyframes scottModalIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.scott-modal-close {
+  position: absolute;
+
+  top: 17px;
+  right: 17px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.scott-modal-close:hover:not(:disabled) {
+  color: #1e293b;
+
+  background: #f1f5f9;
+
+  transform: rotate(3deg);
+}
+
+.scott-modal-close:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   FORGOT PASSWORD ICON
+   ========================================================= */
+
+.scott-forgot-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 19px;
+
+  border-radius: 15px;
+
+  color: #2563eb;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eff6ff,
+      #eef2ff
+    );
+
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================================================
+   FORGOT HEADING
+   ========================================================= */
+
+.scott-forgot-heading {
+  padding-right: 25px;
+
+  margin-bottom: 25px;
+}
+
+.scott-forgot-heading .scott-heading-label {
+  margin-bottom: 8px;
+}
+
+.scott-forgot-heading h3 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 28px;
+
+  line-height: 1.15;
+
+  letter-spacing: -1px;
+
+  font-weight: 800;
+}
+
+.scott-forgot-heading p {
+  margin: 10px 0 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FORGOT FORM
+   ========================================================= */
+
+.scott-forgot-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+/* =========================================================
+   MODAL BACK BUTTON
+   ========================================================= */
+
+.scott-modal-back {
+  width: fit-content;
+
+  align-self: center;
+
+  border: none;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease;
+}
+
+.scott-modal-back:hover:not(:disabled) {
+  color: #2563eb;
+}
+
+.scott-modal-back:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   RESET SUCCESS
+   ========================================================= */
+
+.scott-reset-success {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 8px 0 2px;
+}
+
+.scott-reset-success-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 50%;
+
+  color: #16a34a;
+
+  background: #dcfce7;
+}
+
+.scott-reset-success strong {
+  color: #166534;
+
+  font-size: 15px;
+}
+
+.scott-reset-success p {
+  max-width: 310px;
+
+  margin: 7px 0 20px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+.scott-reset-back-button {
+  height: 43px;
+
+  padding: 0 22px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 9px 20px rgba(37, 99, 235, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.scott-reset-back-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 12px 25px rgba(37, 99, 235, 0.23);
+}
+
+/* =========================================================
+   MODAL MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .scott-modal-overlay {
+    padding: 15px;
+  }
+
+  .scott-forgot-modal {
+    padding: 28px 22px;
+
+    border-radius: 20px;
+  }
+
+  .scott-forgot-heading h3 {
+    font-size: 25px;
+  }
+
+  .scott-forgot-heading p {
+    font-size: 11px;
+  }
+
+  .scott-modal-close {
+    top: 13px;
+    right: 13px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .scott-modal-overlay,
+  .scott-forgot-modal {
+    animation: none !important;
+  }
+}
+/* =========================================================
+   REGISTER PAGE EXTENSIONS
+   Reuses the SCOTT login design system
+   ========================================================= */
+
+.scott-register-container {
+  min-height: 760px;
+}
+
+.scott-register-company-content {
+  justify-content: flex-start;
+}
+
+.scott-register-hero {
+  margin-top: 28px;
+}
+
+.scott-register-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 575px;
+  margin-top: 30px;
+}
+
+.scott-register-benefits > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.64);
+  color: #475569;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.scott-register-benefits svg {
+  flex-shrink: 0;
+  color: #2563eb;
+}
+
+.scott-register-security-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 575px;
+  margin-top: auto;
+  padding: 15px 16px;
+  border: 1px solid #dbeafe;
+  border-radius: 15px;
+  background: rgba(239, 246, 255, 0.72);
+  color: #2563eb;
+}
+
+.scott-register-security-note > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.scott-register-security-note strong {
+  color: #1e3a8a;
+  font-size: 11px;
+}
+
+.scott-register-security-note span {
+  color: #64748b;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.scott-register-panel {
+  padding-top: 38px;
+  padding-bottom: 38px;
+}
+
+.scott-register-card {
+  width: min(455px, 100%);
+}
+
+.scott-register-heading {
+  margin-bottom: 22px;
+}
+
+.scott-register-name-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.scott-back-to-login {
+  margin-top: 17px;
+}
+
+@media (max-width: 980px) {
+  .scott-register-container {
+    min-height: auto;
+  }
+
+  .scott-register-benefits {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .scott-register-name-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scott-register-panel {
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+}
+
+@media (max-width: 520px) {
+  .scott-register-page {
+    padding: 15px;
+  }
+
+  .scott-register-card {
+    width: 100%;
+  }
+}

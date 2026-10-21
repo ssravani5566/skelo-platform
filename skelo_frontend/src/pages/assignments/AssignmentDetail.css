@@ -1,0 +1,68 @@
+/* Student assignment detail */
+.assignment-detail-page{width:100%}
+.assignment-back{border:0;background:none;color:#716a7e;display:inline-flex;align-items:center;gap:6px;font-size:9px;font-weight:800;cursor:pointer;margin:2px 0 12px;padding:0}
+.assignment-back:hover{color:#7755f6}
+
+.assignment-meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.assignment-meta-card{background:#fff;border:1px solid #e8e6ee;border-radius:14px;padding:14px 15px;min-height:78px;box-sizing:border-box}
+.assignment-meta-card span{display:block;color:#96909f;font-size:8px;font-weight:700;margin-bottom:7px}
+.assignment-meta-card strong{font-size:17px;color:#302c38;margin-right:5px}
+.assignment-meta-card small{font-size:8px;color:#aaa4b1}
+
+.assignment-detail-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:16px;align-items:start}
+.assignment-instructions-card,.assignment-submission-card{background:#fff;border:1px solid #e8e6ee;border-radius:17px;padding:22px;box-sizing:border-box}
+.assignment-section-heading{display:flex;justify-content:space-between;align-items:center;padding-bottom:15px;border-bottom:1px solid #eceaf0;margin-bottom:18px}
+.assignment-section-heading>div{display:flex;align-items:center;gap:9px}
+.assignment-section-heading span{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;background:#f1edff;color:#7755f6;font-size:7px;font-weight:900}
+.assignment-section-heading h2{margin:0;font-size:13px;color:#34303d;font-weight:800}
+
+.assignment-description{font-size:11px;line-height:1.7;color:#4e4956;white-space:pre-wrap}
+.assignment-instructions{margin-top:20px;padding:15px;border-radius:12px;background:#faf9fc;border:1px solid #eeeaf3}
+.assignment-instructions h3{margin:0 0 7px;font-size:10px;color:#3b3643}
+.assignment-instructions p{margin:0;font-size:10px;line-height:1.65;color:#716b78;white-space:pre-wrap}
+
+.assignment-reference-box{margin-top:18px;padding:13px;border:1px solid #e4dffc;border-radius:12px;background:#faf8ff;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.reference-icon{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:#eee9ff;color:#7755f6}
+.assignment-reference-box strong,.assignment-reference-box span{display:block}
+.assignment-reference-box strong{font-size:9px;color:#413b49}
+.assignment-reference-box span{font-size:8px;color:#8f8996;margin-top:3px}
+.assignment-download-btn{height:34px;padding:0 11px;border-radius:8px;background:#7755f6;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:8px;font-weight:800}
+
+.existing-submission{padding:12px;border:1px solid #e2f0e9;border-radius:11px;background:#f5fbf8;margin-bottom:16px}
+.existing-submission-top{display:flex;align-items:center;gap:8px;color:#259365}
+.existing-submission-top>div{display:flex;flex-direction:column}
+.existing-submission-top strong{font-size:9px}
+.existing-submission-top span{font-size:7px;color:#8b958f;margin-top:2px}
+.submission-score{margin-top:11px;padding-top:10px;border-top:1px solid #dfede6}
+.submission-score strong{font-size:18px;color:#2b9668}
+.submission-score span{font-size:8px;color:#8d958f}
+.submission-feedback{margin-top:10px;padding-top:10px;border-top:1px solid #dfede6}
+.submission-feedback small{font-size:7px;color:#8c948e;font-weight:800}
+.submission-feedback p{margin:4px 0 0;font-size:9px;line-height:1.5;color:#5e655f}
+
+.assignment-submit-form>label>span,.assignment-upload-label>span{display:block;color:#4b4554;font-size:9px;font-weight:800;margin-bottom:7px}
+.assignment-submit-form textarea{width:100%;box-sizing:border-box;border:1px solid #e5e2eb;border-radius:10px;padding:11px;resize:vertical;outline:none;font:10px/1.55 inherit;color:#413c48;background:#fcfcfe}
+.assignment-submit-form textarea:focus{border-color:#aa98ff;box-shadow:0 0 0 3px #7755f60e}
+.assignment-upload-section{margin-top:15px}
+.assignment-upload-label small{display:block;color:#9993a1;font-size:7px;line-height:1.5;margin-bottom:9px}
+.assignment-dropzone{width:100%;min-height:125px;border:1.5px dashed #cfc8e8;border-radius:13px;background:#faf8ff;color:#6f6879;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;position:relative}
+.assignment-dropzone:hover{border-color:#957dff;background:#f8f5ff}
+.assignment-dropzone.has-file{background:#f5fbf8;border-color:#8ed4b5;color:#2b9668}
+.assignment-dropzone strong{font-size:9px}
+.assignment-dropzone>span:not(.upload-cloud){font-size:7px;color:#9c96a3}
+.upload-cloud{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:#eee9ff;color:#7755f6}
+.assignment-dropzone.has-file>svg{color:#2b9668}
+.assignment-dropzone i{position:absolute;right:10px;top:10px;width:25px;height:25px;border-radius:7px;background:#fff;border:1px solid #dfe8e3;display:grid;place-items:center;color:#a65b68;font-style:normal}
+.hidden-file-input{display:none}
+.assignment-form-error,.assignment-success{margin-top:10px;padding:9px 10px;border-radius:9px;font-size:8px;display:flex;align-items:center;gap:6px}
+.assignment-form-error{background:#fff0f3;color:#b94e63}
+.assignment-success{background:#eaf8f1;color:#26875f}
+.assignment-alert-icon{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;background:#e1a34c;color:#fff;font-size:9px;font-weight:900}
+.assignment-submit-button{width:100%;height:40px;margin-top:12px;border:0;border-radius:9px;background:linear-gradient(135deg,#7755f6,#a34fdc);color:#fff;display:flex;align-items:center;justify-content:center;gap:7px;font-size:9px;font-weight:850;cursor:pointer}
+.assignment-submit-button:disabled{opacity:.5;cursor:not-allowed}
+.assignment-closed-message{padding:17px;border-radius:11px;background:#f8f7fa;border:1px solid #e7e4eb;color:#7f7887;display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px}
+.assignment-closed-message strong{font-size:9px;color:#56505e}
+.assignment-closed-message span{font-size:8px}
+
+@media(max-width:900px){.assignment-meta-grid{grid-template-columns:repeat(2,1fr)}.assignment-detail-layout{grid-template-columns:1fr}}
+@media(max-width:520px){.assignment-meta-grid{grid-template-columns:1fr}.assignment-reference-box{grid-template-columns:auto 1fr}.assignment-download-btn{grid-column:1/-1}}

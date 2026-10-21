@@ -1,0 +1,20 @@
+/* Student assignments list */
+.assignments-page{width:100%}
+.assignment-toolbar{display:flex;gap:10px;margin:16px 0}
+.assignment-search{height:40px;flex:1;max-width:460px;border:1px solid #e5e2eb;border-radius:10px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;color:#9992a2}
+.assignment-search input{border:0;outline:0;background:transparent;width:100%;font:9px inherit;color:#3f3a47}
+.assignment-toolbar select{height:40px;border:1px solid #e5e2eb;border-radius:10px;background:#fff;padding:0 12px;color:#5f5968;font:9px inherit}
+.assignment-list-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.assignment-card{background:#fff;border:1px solid #e8e6ee;border-radius:16px;padding:17px;box-shadow:0 6px 22px rgba(42,35,68,.025)}
+.assignment-card-top{display:flex;justify-content:space-between;align-items:center}
+.assignment-file-icon{width:39px;height:39px;border-radius:10px;background:#f0ecff;color:#7755f6;display:grid;place-items:center}
+.assignment-card h2{font-size:14px;color:#322d3b;margin:15px 0 7px}
+.assignment-card p{height:43px;overflow:hidden;margin:0;color:#8a8491;font-size:9px;line-height:1.6}
+.assignment-card-info{display:grid;gap:7px;margin:15px 0;padding:12px 0;border-top:1px solid #efedf2;border-bottom:1px solid #efedf2}
+.assignment-card-info span{display:flex;align-items:center;gap:7px;color:#746e7d;font-size:8px}
+.assignment-card-info svg{color:#8b75ee}
+.assignment-card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.assignment-card-footer>span{font-size:8px;color:#8f8996;font-weight:700}
+.assignment-open-button{height:31px;padding:0 10px;border:0;border-radius:8px;background:#7755f6;color:#fff;display:flex;align-items:center;gap:5px;font-size:8px;font-weight:800;cursor:pointer}
+@media(max-width:1050px){.assignment-list-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.assignment-toolbar{flex-direction:column}.assignment-search{max-width:none}.assignment-list-grid{grid-template-columns:1fr}}

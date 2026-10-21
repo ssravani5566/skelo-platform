@@ -1,0 +1,9 @@
+SCOTT Frontend
+
+1. Extract this folder.
+2. Open PowerShell in the folder that contains package.json.
+3. Run: npm install
+4. Run: npm run dev
+5. Open: http://localhost:5173/
+
+Coding Arena now loads real external question metadata automatically from the Django backend when the catalog is empty. Keep Django running at http://127.0.0.1:8000/.

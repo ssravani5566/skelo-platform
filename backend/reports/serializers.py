@@ -1,0 +1,3 @@
+from rest_framework import serializers
+class ReportSerializer(serializers.Serializer):
+    course_completion=serializers.FloatField(); lesson_completion=serializers.FloatField(); coding_solved=serializers.IntegerField(); assessment_performance=serializers.FloatField(); assignment_performance=serializers.FloatField(); attendance=serializers.FloatField(); interview_performance=serializers.FloatField(); codeathon_participation=serializers.IntegerField(); xp=serializers.IntegerField(); streak=serializers.IntegerField(); longest_streak=serializers.IntegerField(); placement_readiness=serializers.FloatField(); enrolled_courses=serializers.IntegerField(); trend=serializers.ListField()

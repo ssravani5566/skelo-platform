@@ -1,0 +1,48 @@
+SCOTT CODING PLATFORM FIX
+=========================
+
+Fixed HackerRank and CodeChef external catalog sync.
+
+Why HackerRank returned no questions
+------------------------------------
+The old scraper accepted only URLs ending as:
+/challenges/<slug>
+
+Current HackerRank challenge links can include:
+/challenges/<slug>/problem
+
+The new sync first uses HackerRank's public challenge-list JSON endpoint and
+falls back to public domain pages with the corrected URL parser.
+
+Why CodeChef returned no questions
+----------------------------------
+The old sync scraped https://www.codechef.com/practice. That page is now
+primarily a JavaScript practice landing page, so a server-side requests/BS4
+scrape can return no direct problem links.
+
+The new sync uses CodeChef's server-rendered /practice-old catalog and walks
+its pagination, saving canonical /problems/<CODE> links.
+
+Run after replacing the backend
+-------------------------------
+1. Install dependencies if needed:
+   pip install -r requirements.txt
+
+2. Start/migrate normally:
+   python manage.py migrate
+
+3. Import the two previously failing platforms:
+   python manage.py sync_external_problems --platform HACKERRANK --limit 1000
+   python manage.py sync_external_problems --platform CODECHEF --limit 5000
+
+Or sync all supported live catalogs:
+   python manage.py sync_external_problems --platform ALL --limit 5000
+
+4. Restart Django and refresh the Coding Arena.
+
+Updated files
+-------------
+- coding/external_sync.py
+- coding/views.py
+- coding/management/commands/sync_external_problems.py
+- EXTERNAL_CODING_SETUP.md

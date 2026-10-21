@@ -1,0 +1,26 @@
+.codeathons-page{--ct-accent:var(--accent,#22c7a9);color:var(--text,#e8eef5)}
+.codeathon-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}
+.codeathon-stat{display:flex;align-items:center;gap:13px;padding:17px;border:1px solid var(--border,#293646);border-radius:15px;background:var(--surface,#111b28)}
+.codeathon-stat-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:color-mix(in srgb,var(--ct-accent) 15%,transparent);color:var(--ct-accent)}
+.codeathon-stat small{display:block;color:var(--muted,#9ba8b8);font-size:12px;margin-bottom:5px}.codeathon-stat strong{font-size:24px;line-height:1.1}
+.codeathon-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0}
+.codeathon-search,.codeathon-filter{display:flex;align-items:center;gap:9px;border:1px solid var(--border,#293646);background:var(--surface,#111b28);border-radius:12px;padding:0 13px;min-height:44px;color:var(--muted,#9ba8b8)}
+.codeathon-search{flex:1;min-width:230px}.codeathon-search input{width:100%;border:0;outline:0;background:transparent;color:inherit;padding:12px 0}
+.codeathon-filter{flex-wrap:wrap;padding:5px 10px}.codeathon-filter select{max-width:165px;border:0;outline:0;background:transparent;color:var(--text,#e8eef5);padding:7px}.codeathon-filter option{background:#111b28}
+.codeathon-tabs{display:flex;gap:7px;overflow-x:auto;border-bottom:1px solid var(--border,#293646);margin-bottom:19px}
+.codeathon-tabs button{white-space:nowrap;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted,#9ba8b8);padding:13px 15px;cursor:pointer;font:inherit}
+.codeathon-tabs button.active{color:var(--ct-accent);border-bottom-color:var(--ct-accent)}.codeathon-tabs button span{margin-left:7px;border-radius:20px;padding:2px 7px;background:color-mix(in srgb,var(--ct-accent) 15%,transparent);font-size:11px}
+.codeathon-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.codeathon-event-card{overflow:hidden;border:1px solid var(--border,#293646);border-radius:16px;background:var(--surface,#111b28);display:flex;flex-direction:column;min-width:0;transition:border-color .18s}
+.codeathon-event-card:hover{border-color:color-mix(in srgb,var(--ct-accent) 65%,var(--border,#293646))}
+.codeathon-card-banner{height:116px;position:relative;display:flex;align-items:center;justify-content:center;color:#9af6dc;background:radial-gradient(circle at 80% 15%,#1c695c 0,transparent 38%),linear-gradient(125deg,#102b32,#172438 65%,#23304b)}
+.codeathon-card-banner.hackathon{color:#d6c8ff;background:radial-gradient(circle at 80% 15%,#59418c 0,transparent 38%),linear-gradient(125deg,#201d3c,#172438 65%,#273b57)}
+.codeathon-banner-mark{position:absolute;left:17px;top:15px;font-size:10px;letter-spacing:2px;font-weight:800;opacity:.78}.codeathon-status{position:absolute;right:12px;bottom:12px;font-size:10px;padding:5px 8px;border:1px solid #ffffff32;border-radius:30px;background:#07121a70;color:#fff}
+.codeathon-card-content{padding:16px;display:flex;flex-direction:column;flex:1}.codeathon-tags{display:flex;gap:6px;flex-wrap:wrap}.codeathon-tags span{font-size:10px;padding:4px 7px;border-radius:6px;background:var(--surface-2,#1b2938);color:var(--muted,#9ba8b8)}
+.codeathon-card-content h3{font-size:17px;margin:12px 0 7px;line-height:1.35}.codeathon-description{font-size:13px;line-height:1.6;color:var(--muted,#9ba8b8);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:61px}
+.codeathon-meta{display:grid;gap:9px;margin:10px 0;color:var(--muted,#9ba8b8);font-size:12px}.codeathon-meta span{display:flex;align-items:center;gap:8px}.codeathon-prize{display:flex;gap:7px;align-items:flex-start;color:#f4ce7b;font-size:12px;margin:6px 0 12px;line-height:1.5}
+.codeathon-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid var(--border,#293646)}.registered-label{display:flex;align-items:center;gap:5px;color:#4fd9b1;font-size:11px}
+.codeathon-card-footer .action-link{display:flex;align-items:center;gap:5px;margin-left:auto}
+.codeathon-empty{padding:48px 18px;text-align:center;border:1px dashed var(--border,#293646);border-radius:16px;background:var(--surface,#111b28)}.codeathon-empty-icon{margin:auto;display:grid;place-items:center;width:58px;height:58px;border-radius:18px;color:var(--ct-accent);background:color-mix(in srgb,var(--ct-accent) 13%,transparent)}.codeathon-empty h3{margin:16px 0 8px}.codeathon-empty p{color:var(--muted,#9ba8b8);max-width:470px;margin:0 auto 18px;line-height:1.6;font-size:13px}.codeathon-empty .outline-btn{display:inline-flex;align-items:center;gap:8px}.codeathon-notice{margin:10px 0;padding:10px 13px;border-radius:9px;background:var(--surface-2,#1b2938);font-size:13px}
+@media(max-width:1000px){.codeathon-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.codeathon-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.codeathon-card-grid{grid-template-columns:1fr}.codeathon-stat-grid{gap:9px}.codeathon-stat{padding:12px}.codeathon-stat strong{font-size:20px}.codeathon-filter{width:100%}.codeathon-filter select{flex:1;min-width:90px}.codeathon-search{min-width:100%}}

@@ -6,7 +6,7 @@ from django.db import migrations
 def seed_admin(apps, schema_editor):
     User = apps.get_model("accounts", "User")
 
-    password = os.environ["Admin@123"]
+    password = os.environ["INITIAL_ADMIN_PASSWORD"]
 
     user = User.objects.filter(username="Admin").first()
 

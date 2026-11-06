@@ -18,6 +18,8 @@ import {
 
 import PageHeader from "../../components/PageHeader";
 import CodeathonManager from "./CodeathonManager";
+import InterviewManager from "./InterviewManager";
+import AttendanceManager from "./AttendanceManager";
 import { Badge, DetailPanel } from "../../components/ModuleCard";
 import { ErrorState, Loading } from "../../components/AsyncState";
 import {
@@ -177,7 +179,7 @@ export default function Management() {
   return (
     <div>
       <PageHeader
-        eyebrow="SCOTT · ADMIN CONSOLE"
+        eyebrow="SKelo · ADMIN CONSOLE"
         title="Admin Management"
         subtitle="Create and publish learning content, question papers and student activities from the database."
       />
@@ -220,6 +222,10 @@ export default function Management() {
         <AssignmentManager data={data} onDone={done} />
       ) : tab === "Codeathons" ? (
         <CodeathonManager data={data} onDone={done} />
+      ) : tab === "Interviews" ? (
+        <InterviewManager data={data} onDone={done} />
+      ) : tab === "Attendance" ? (
+        <AttendanceManager data={data} onDone={done} />
       ) : tab === "External Coding" ? (
         <ExternalCoding data={data} onDone={done} />
       ) : (

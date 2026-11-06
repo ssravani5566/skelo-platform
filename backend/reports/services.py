@@ -26,6 +26,7 @@ def report_overview(user):
     interviews=Interview.objects.filter(student=student,status="COMPLETED"); interview_avg=round(float(interviews.aggregate(v=Avg("overall_score"))["v"] or 0),2)
     codeathons=CodeathonParticipant.objects.filter(student=student).count()
     xp=sum(XPTransaction.objects.filter(student=student).values_list("points",flat=True)); streak,_=StudentStreak.objects.get_or_create(student=student)
+    # Heuristic indicator for practice planning only; not a validated placement prediction.
     readiness=round(0.30*assessment_avg + 0.25*min(accepted/20*100,100) + 0.20*course_completion + 0.10*attendance + 0.15*interview_avg,2)
     since=timezone.localdate()-timedelta(days=29); trend=[]
     for i in range(30):

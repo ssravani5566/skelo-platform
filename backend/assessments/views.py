@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.db import transaction
 from django.db.models import Q
 from django.utils import timezone
+from datetime import timedelta
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,6 +19,12 @@ from .services import get_or_create_attempt, is_open, submit_attempt
 class HealthView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request): return Response({"status":"ok"})
+
+
+def _attempt_expired(attempt):
+    if not attempt.started_at:
+        return False
+    return timezone.now() > attempt.started_at + timedelta(minutes=max(1, attempt.assessment.duration_minutes))
 
 
 def _student_is_allowed(assessment, student):
@@ -83,17 +90,22 @@ class AttemptView(APIView):
     def post(self,request,pk):
         attempt=get_object_or_404(StudentAssessment,pk=pk,student=get_student_profile(request.user))
         if attempt.status=="EVALUATED": return Response({"detail":"Attempt already submitted."},status=400)
+        if _attempt_expired(attempt): return Response({"detail":"The assessment time limit has expired. Submit your attempt to evaluate saved answers."},status=400)
         qid=request.data.get("question"); answer=request.data.get("answer_text","")
         aq=get_object_or_404(AssessmentQuestion,assessment=attempt.assessment,question_id=qid)
+        if aq.question.question_type == "CODING": return Response({"detail":"Coding answers must be submitted to the server-side code evaluator."},status=400)
         obj,_=StudentAnswer.objects.update_or_create(student_assessment=attempt,question=aq.question,defaults={"answer_text":answer})
         return Response(StudentAnswerSerializer(obj).data)
 
     def put(self,request,pk):
         attempt=get_object_or_404(StudentAssessment,pk=pk,student=get_student_profile(request.user))
         if attempt.status=="EVALUATED": return Response({"detail":"Attempt already submitted."},status=400)
+        if _attempt_expired(attempt): return Response({"detail":"The assessment time limit has expired. Submit your attempt to evaluate saved answers."},status=400)
         if isinstance(request.data.get("answers"),list):
             for row in request.data["answers"]:
                 aq=get_object_or_404(AssessmentQuestion,assessment=attempt.assessment,question_id=row.get("question"))
+                if aq.question.question_type == "CODING":
+                    continue
                 StudentAnswer.objects.update_or_create(student_assessment=attempt,question=aq.question,defaults={"answer_text":row.get("answer_text","")})
         return Response(AttemptSerializer(attempt).data)
 
@@ -104,6 +116,7 @@ class AttemptSubmitView(APIView):
     def post(self,request,pk):
         attempt=get_object_or_404(StudentAssessment,pk=pk,student=get_student_profile(request.user))
         if attempt.status=="EVALUATED": return Response(AttemptSerializer(attempt).data)
+        # Expired attempts can be submitted; saved answers are evaluated on the server.
         return Response(AttemptSerializer(submit_attempt(attempt)).data)
 
 class AttemptResultView(APIView):
@@ -398,6 +411,7 @@ class AssessmentCodingAnswerView(APIView):
         if request.user.role!="STUDENT": return Response({"detail":"Student access required."},status=403)
         attempt=get_object_or_404(StudentAssessment,pk=pk,student=get_student_profile(request.user))
         if attempt.status=="EVALUATED": return Response({"detail":"Attempt already submitted."},status=400)
+        if _attempt_expired(attempt): return Response({"detail":"The assessment time limit has expired."},status=400)
         q=get_object_or_404(Question,pk=request.data.get("question"),question_type="CODING",assessment_questions__assessment=attempt.assessment)
         language=str(request.data.get("language") or q.coding_language or "PYTHON").upper()
         source=str(request.data.get("source_code") or "")

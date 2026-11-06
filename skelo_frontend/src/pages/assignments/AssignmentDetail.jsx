@@ -153,7 +153,7 @@ export default function AssignmentDetail() {
       </button>
 
       <PageHeader
-        eyebrow="SCOTT · ASSIGNMENT"
+        eyebrow="SKelo · ASSIGNMENT"
         title={assignment.title}
         subtitle={assignment.description || "Complete and submit this assignment."}
         action={<Badge>{assignment.status}</Badge>}

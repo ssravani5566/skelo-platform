@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Interview(models.Model):
-    TYPE_CHOICES = (("TECHNICAL", "Technical"), ("HR", "HR"), ("MIXED", "Mixed"), ("SYSTEM_DESIGN", "System Design"))
+    TYPE_CHOICES = (("TECHNICAL", "Technical"), ("HR", "HR"), ("MIXED", "Full Mock"), ("CODING", "Coding"), ("DSA", "DSA"), ("BEHAVIORAL", "Behavioral"), ("PROJECT", "Project"), ("RESUME_BASED", "Resume Based"), ("COMPANY_SPECIFIC", "Company Specific"), ("SYSTEM_DESIGN", "System Design"))
     STATUS_CHOICES = (("SCHEDULED", "Scheduled"), ("IN_PROGRESS", "In Progress"), ("COMPLETED", "Completed"), ("CANCELLED", "Cancelled"))
     title = models.CharField(max_length=200)
     interview_type = models.CharField(max_length=30, choices=TYPE_CHOICES, default="TECHNICAL")
@@ -12,6 +12,12 @@ class Interview(models.Model):
     scheduled_at = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="SCHEDULED")
     role = models.CharField(max_length=150, blank=True)
+    company = models.CharField(max_length=120, blank=True, default="General Placement")
+    difficulty = models.CharField(max_length=20, default="INTERMEDIATE", choices=(("BEGINNER","Beginner"),("INTERMEDIATE","Intermediate"),("ADVANCED","Advanced")))
+    duration_minutes = models.PositiveIntegerField(default=30)
+    interview_mode = models.CharField(max_length=10, default="TEXT", choices=(("TEXT","Text"),("VOICE","Voice"),("VIDEO","Video")))
+    technical_topics = models.TextField(blank=True)
+    is_published = models.BooleanField(default=True)
     overall_score = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -120,7 +120,7 @@ export default function Coding() {
   return (
     <div className="coding-page">
       <PageHeader
-        eyebrow="SCOTT · CODING ARENA"
+        eyebrow="SKelo · CODING ARENA"
         title="Coding questions"
         subtitle="Browse real questions from coding platforms and solve each question on its original website."
         action={
@@ -134,7 +134,7 @@ export default function Coding() {
         <div className="coding-source-copy">
           <div className="mini-eyebrow"><Globe2 size={13} /> EXTERNAL PLATFORM CATALOG</div>
           <strong>Questions stay on their original platform</strong>
-          <span>SCOTT stores public metadata, your local progress and the official question URL.</span>
+          <span>SKelo stores public metadata, your local progress and the official question URL.</span>
         </div>
         <div className="coding-platform-links">
           {PLATFORMS.map((p) => (
@@ -156,7 +156,7 @@ export default function Coding() {
             </button>
           ))}
           <button className={source === "LOCAL" ? "active" : ""} onClick={() => { setSource("LOCAL"); setPlatform(""); setSolved(""); }}>
-            SCOTT practice
+            SKelo practice
           </button>
         </div>
 
@@ -211,14 +211,14 @@ export default function Coding() {
         <ErrorState text={error} onRetry={load} />
       ) : !items.length ? (
         <Empty
-          title={catalogSyncing ? "Live catalog is syncing…" : (q.trim() || platform || difficulty || solved) ? "No questions match your filters" : externalMode ? "No live external questions are available" : "No SCOTT coding questions"}
+          title={catalogSyncing ? "Live catalog is syncing…" : (q.trim() || platform || difficulty || solved) ? "No questions match your filters" : externalMode ? "No live external questions are available" : "No SKelo coding questions"}
           text={catalogSyncing
-            ? "SCOTT is loading real question metadata from the selected coding platforms. Refresh this page in a moment."
+            ? "SKelo is loading real question metadata from the selected coding platforms. Refresh this page in a moment."
             : (q.trim() || platform || difficulty || solved)
               ? "Clear the filters to see more questions, or switch to another coding platform."
               : externalMode
                 ? "The live catalog could not be loaded. Check the Django server connection and try Refresh again."
-                : "No published SCOTT coding questions are available."}
+                : "No published SKelo coding questions are available."}
         />
       ) : (
         <section className="coding-list-panel">
@@ -251,7 +251,7 @@ export default function Coding() {
                   )}
                 </div>
                 <div className="coding-platform-cell">
-                  {external ? <><span className={platformColorClass(problem.platform)} />{problem.platform_label}</> : "SCOTT"}
+                  {external ? <><span className={platformColorClass(problem.platform)} />{problem.platform_label}</> : "SKelo"}
                   {problem.premium && <span className="premium-badge">Premium</span>}
                 </div>
                 <div className="coding-metric-cell">

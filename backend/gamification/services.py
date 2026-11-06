@@ -6,13 +6,27 @@ from .models import XPTransaction, Badge, StudentBadge, StudentStreak
 
 @transaction.atomic
 def update_streak(student):
+    """Record one learning activity per local calendar day."""
     today=timezone.localdate()
     streak,_=StudentStreak.objects.get_or_create(student=student)
     if streak.last_activity_date == today:
         return streak
-    if streak.last_activity_date == today-timedelta(days=1): streak.current_streak += 1
-    else: streak.current_streak = 1
-    streak.longest_streak=max(streak.longest_streak,streak.current_streak); streak.last_activity_date=today; streak.save(update_fields=["current_streak","longest_streak","last_activity_date","updated_at"])
+    if streak.last_activity_date == today-timedelta(days=1):
+        streak.current_streak += 1
+    else:
+        streak.current_streak = 1
+    streak.longest_streak=max(streak.longest_streak,streak.current_streak)
+    streak.last_activity_date=today
+    streak.save(update_fields=["current_streak","longest_streak","last_activity_date","updated_at"])
+    return streak
+
+def active_streak(student):
+    """Return zero after a missed day; the next check-in will restart at one."""
+    streak,_=StudentStreak.objects.get_or_create(student=student)
+    today=timezone.localdate()
+    if streak.current_streak and (not streak.last_activity_date or streak.last_activity_date < today-timedelta(days=1)):
+        streak.current_streak=0
+        streak.save(update_fields=["current_streak","updated_at"])
     return streak
 
 @transaction.atomic
@@ -31,6 +45,6 @@ def award_xp(student, activity_type, points, description="", source_key=""):
 
 def gamification_summary(student):
     total=sum(XPTransaction.objects.filter(student=student).values_list("points",flat=True))
-    streak,_=StudentStreak.objects.get_or_create(student=student)
+    streak=active_streak(student)
     badges=StudentBadge.objects.filter(student=student).select_related("badge").order_by("-awarded_at")
     return {"xp":total,"streak":{"current":streak.current_streak,"longest":streak.longest_streak,"last_activity_date":streak.last_activity_date},"badges":badges}

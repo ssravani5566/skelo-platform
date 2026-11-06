@@ -60,7 +60,7 @@ export default function Assignments() {
   return (
     <div className="assignments-page">
       <PageHeader
-        eyebrow="SCOTT · LEARNING HUB"
+        eyebrow="SKelo · LEARNING HUB"
         title="Assignments"
         subtitle="Complete your assignments and submit your work before the due date."
       />

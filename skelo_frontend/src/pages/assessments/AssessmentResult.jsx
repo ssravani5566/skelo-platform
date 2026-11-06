@@ -16,7 +16,7 @@ export default function AssessmentResult(){
  const passed=Boolean(a.passed);
  return <div>
    <button className="back-link" onClick={()=>nav("/assessments")}><ArrowLeft size={15}/> Assessments</button>
-   <PageHeader eyebrow="SCOTT · ASSESSMENT RESULT" title={a.assessment_title} subtitle="Your result is calculated from the submitted answers and stored with this assessment attempt."/>
+   <PageHeader eyebrow="SKelo · ASSESSMENT RESULT" title={a.assessment_title} subtitle="Your result is calculated from the submitted answers and stored with this assessment attempt."/>
    <section className="result-hero">
      <div><span className="mini-eyebrow">FINAL SCORE</span><strong>{a.percentage}%</strong><span>{a.score} / {a.total_marks} marks</span></div>
      <div className="result-hero-badge"><Badge tone={passed?"success":"warning"}>{passed?"PASS":"REVIEW REQUIRED"}</Badge><small>{a.assessment_type} · {a.total_questions} questions</small></div>

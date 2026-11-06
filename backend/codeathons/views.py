@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -68,7 +69,10 @@ class LeaveView(APIView):
 class ProblemsView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request,pk):
-        c=get_object_or_404(Codeathon,pk=pk); student=get_student_profile(request.user) if request.user.role=="STUDENT" else None
+        c=get_object_or_404(Codeathon,pk=pk,**({"is_published":True} if request.user.role=="STUDENT" else {}))
+        student=get_student_profile(request.user) if request.user.role=="STUDENT" else None
+        if student and not CodeathonParticipant.objects.filter(codeathon=c,student=student).exists():
+            return Response({"detail":"Register for this codeathon to view its problems."},status=403)
         return Response(CodeathonProblemSerializer(c.problems.select_related("problem"),many=True,context={"student":student}).data)
     def post(self,request,pk):
         if request.user.role not in ("ADMIN","FACULTY"): return Response({"detail":"Faculty or admin access required."},status=403)
@@ -76,7 +80,8 @@ class ProblemsView(APIView):
 class LeaderboardView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request,pk):
-        qs=CodeathonParticipant.objects.filter(codeathon_id=pk).select_related("student__user").order_by("-score","registered_at")
+        c=get_object_or_404(Codeathon,pk=pk,**({"is_published":True} if request.user.role=="STUDENT" else {}))
+        qs=CodeathonParticipant.objects.filter(codeathon=c).select_related("student__user").order_by("-score","registered_at")
         rows=list(qs); changed=False
         for i,row in enumerate(rows,1):
             if row.rank!=i: row.rank=i; row.save(update_fields=["rank"])
@@ -85,15 +90,19 @@ class SubmitView(APIView):
     permission_classes=[IsAuthenticated]
     def post(self,request,pk):
         if request.user.role!="STUDENT": return Response({"detail":"Student access required."},status=403)
-        c=get_object_or_404(Codeathon,pk=pk,is_published=True); p=get_object_or_404(CodeathonParticipant,codeathon=c,student=get_student_profile(request.user));
-        if not c.start_at<=timezone.now()<=c.end_at: return Response({"detail":"Codeathon is not open."},status=400)
+        c=get_object_or_404(Codeathon,pk=pk,is_published=True)
+        if not c.start_at <= timezone.now() <= c.end_at: return Response({"detail":"Codeathon is not open."},status=400)
+        p=get_object_or_404(CodeathonParticipant,codeathon=c,student=get_student_profile(request.user))
         problem_link=get_object_or_404(CodeathonProblem,codeathon=c,problem_id=request.data.get("problem_id"))
+        # Run untrusted code before acquiring the short scoring lock; never hold a DB lock while executing code.
         sub=evaluate_submission(p.student,problem_link.problem,request.data.get("language"),request.data.get("source_code",""))
-        already_awarded=CodeathonSubmission.objects.filter(participant=p,problem=problem_link.problem,points_awarded__gt=0).exists()
-        points=problem_link.points if sub.status=="ACCEPTED" and not already_awarded else 0
-        CodeathonSubmission.objects.create(participant=p,problem=problem_link.problem,submission=sub,points_awarded=points)
-        if points:
-            p.score = p.score + points
-            p.save(update_fields=["score"])
-            award_xp(p.student,"CODEATHON",points,f"Codeathon points: {c.title}",source_key=f"codeathon:{c.id}:problem:{problem_link.problem.id}")
+        with transaction.atomic():
+            p=CodeathonParticipant.objects.select_for_update().get(pk=p.pk)
+            already_awarded=CodeathonSubmission.objects.filter(participant=p,problem=problem_link.problem,points_awarded__gt=0).exists()
+            points=problem_link.points if sub.status=="ACCEPTED" and not already_awarded else 0
+            CodeathonSubmission.objects.create(participant=p,problem=problem_link.problem,submission=sub,points_awarded=points)
+            if points:
+                p.score = p.score + points
+                p.save(update_fields=["score"])
+                award_xp(p.student,"CODEATHON",points,f"Codeathon points: {c.title}",source_key=f"codeathon:{c.id}:problem:{problem_link.problem.id}")
         return Response({"submission_id":sub.id,"status":sub.status,"points_awarded":points})

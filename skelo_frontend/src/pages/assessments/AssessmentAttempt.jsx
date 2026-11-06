@@ -215,9 +215,9 @@ export default function AssessmentAttempt() {
     setSubmitMessage("");
 
     try {
-      if (currentQuestion?.question_type === "CODING") {
-        await saveAnswer();
-      } else {
+      // Coding source/evaluation is persisted by the server-side coding-answer endpoint.
+      // Never overwrite its verified result with raw editor text during final submission.
+      if (currentQuestion?.question_type !== "CODING") {
         await saveAnswer();
       }
 

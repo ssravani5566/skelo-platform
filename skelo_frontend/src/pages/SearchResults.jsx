@@ -27,7 +27,7 @@ export default function SearchResults() {
 
   const sections = [
     ["courses", "Courses"],
-    ["problems", "SCOTT coding problems"],
+    ["problems", "SKelo coding problems"],
     ["external_problems", "External coding platforms"],
     ["assessments", "Assessments"],
     ["assignments", "Assignments"],
@@ -40,7 +40,7 @@ export default function SearchResults() {
   return (
     <div>
       <PageHeader
-        eyebrow="SCOTT · SEARCH"
+        eyebrow="SKelo · SEARCH"
         title={`Search: ${q}`}
         subtitle="Results come from published/authorized backend records across the platform."
       />

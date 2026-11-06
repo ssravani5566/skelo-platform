@@ -83,7 +83,7 @@ export default function ProblemDetail() {
         </button>
 
         <PageHeader
-          eyebrow={`SCOTT · ${problem.platform_label || "EXTERNAL"}`}
+          eyebrow={`SKelo · ${problem.platform_label || "EXTERNAL"}`}
           title={problem.title}
           subtitle={problem.topic || "External coding question"}
           action={<Badge tone={String(problem.difficulty).toLowerCase()}>{problem.difficulty_label}</Badge>}
@@ -92,9 +92,9 @@ export default function ProblemDetail() {
         <section className="external-detail-hero">
           <div>
             <div className="external-detail-kicker"><Globe2 size={15} /> {problem.platform_label}</div>
-            <h2>{problem.solved ? "Completed in your SCOTT practice tracker" : "Solve this question on the original platform"}</h2>
+            <h2>{problem.solved ? "Completed in your SKelo practice tracker" : "Solve this question on the original platform"}</h2>
             <p>
-              SCOTT keeps the catalog and your practice state. The original platform remains responsible for the full statement, editor, execution and submission result.
+              SKelo keeps the catalog and your practice state. The original platform remains responsible for the full statement, editor, execution and submission result.
             </p>
           </div>
           <div className="external-detail-actions">
@@ -131,7 +131,7 @@ export default function ProblemDetail() {
             </button>
             <div className="external-integrity-note">
               <CheckCircle2 size={14} />
-              Your solve result comes from {problem.platform_label}, not from a fake SCOTT submission.
+              Your solve result comes from {problem.platform_label}, not from a fake SKelo submission.
             </div>
           </DetailPanel>
         </div>
@@ -148,7 +148,7 @@ export default function ProblemDetail() {
       </button>
 
       <PageHeader
-        eyebrow="SCOTT · PROBLEM"
+        eyebrow="SKelo · PROBLEM"
         title={problem.title}
         subtitle={problem.topic || "Problem details"}
         action={<Badge tone={String(problem.difficulty).toLowerCase()}>{problem.difficulty_label}</Badge>}

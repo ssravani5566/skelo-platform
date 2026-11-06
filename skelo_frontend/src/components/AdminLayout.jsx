@@ -23,7 +23,7 @@ export default function AdminLayout({children}){
  return <div className="app-shell admin-shell">
    <div className={`mobile-overlay ${open?"show":""}`} onClick={()=>setOpen(false)}/>
    <aside className={`sidebar admin-sidebar ${open?"open":""}`}>
-    <div className="brand"><div className="brand-mark"><ShieldCheck size={20}/></div><div className="brand-copy"><b>SCOTT</b><span>ADMIN CONTROL CENTER</span></div><button className="mobile-close" onClick={()=>setOpen(false)}><X/></button></div>
+    <div className="brand"><div className="brand-mark"><ShieldCheck size={20}/></div><div className="brand-copy"><b>SKelo</b><span>ADMIN CONTROL CENTER</span></div><button className="mobile-close" onClick={()=>setOpen(false)}><X/></button></div>
     <div className="side-label">ADMIN WORKSPACE</div>
     <nav>{links.map(([label,path,Icon,key])=><NavLink key={label} to={path} end={key==="Overview"} onClick={()=>setOpen(false)} className={()=>`nav-item ${active(key)?"active":""}`}><span className="nav-icon"><Icon size={18}/></span><span>{label}</span></NavLink>)}</nav>
     <div className="sidebar-bottom">
@@ -33,7 +33,7 @@ export default function AdminLayout({children}){
     </div>
    </aside>
    <main className="main admin-main">
-    <header className="topbar"><button className="menu" onClick={()=>setOpen(true)}><Menu/></button><div className="breadcrumb"><span>SCOTT</span><i>/</i>Admin Workspace</div><div className="global-search"><Search size={16}/><input placeholder="Search admin records..." disabled/><kbd><Command size={11}/> K</kbd></div><div className="top-actions"><div className={`api-status ${status.toLowerCase()}`}><span/>{status}</div><div className="top-avatar">{initials}</div></div></header>
+    <header className="topbar"><button className="menu" onClick={()=>setOpen(true)}><Menu/></button><div className="breadcrumb"><span>SKelo</span><i>/</i>Admin Workspace</div><div className="global-search"><Search size={16}/><input placeholder="Search admin records..." disabled/><kbd><Command size={11}/> K</kbd></div><div className="top-actions"><div className={`api-status ${status.toLowerCase()}`}><span/>{status}</div><div className="top-avatar">{initials}</div></div></header>
     <section className="content">{children}</section>
    </main>
  </div>

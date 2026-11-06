@@ -7,4 +7,4 @@ class InterviewAdminSerializer(serializers.ModelSerializer):
     interviewer=serializers.PrimaryKeyRelatedField(queryset=User.objects.filter(role__in=["ADMIN","FACULTY"]),required=False,allow_null=True)
     class Meta:
         model=Interview
-        fields=["id","title","interview_type","student_id","interviewer","scheduled_at","status","role"]
+        fields=["id","title","interview_type","student_id","interviewer","scheduled_at","status","role","company","difficulty","duration_minutes","interview_mode","technical_topics","is_published"]

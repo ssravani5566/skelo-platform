@@ -56,3 +56,8 @@ Faculty/Admin can open **Management → External Coding** and add an authorized 
 The student sees that question inside SCOTT and can click **Solve on <platform>**. SCOTT opens the canonical URL in a new browser tab. External submissions are intentionally not executed by SCOTT and therefore do not appear in SCOTT's local submission history.
 
 This design keeps platform judging, accounts, rankings and submissions on the platform that owns the problem. Do not paste or reproduce third-party question content unless you are authorized to do so.
+
+## Updated overview and setup notes
+- The Overview page now follows the supplied light dashboard reference and uses live Django dashboard data. It does not create demo student records.
+- Install dependencies from the lockfile with `npm ci`, configure `.env` from `.env.example` if needed, then run `npm run dev`.
+- Before release, run `npm run build` on the target OS. The uploaded dependency folder contained Windows-specific Rolldown binaries, so a Linux build could not be validated in this environment.

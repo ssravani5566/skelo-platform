@@ -172,5 +172,12 @@ class AdminUserListView(APIView):
             user.role = request.data["role"]
         if "is_active" in request.data:
             user.is_active = bool(request.data["is_active"])
-        user.save(update_fields=["role", "is_active", "updated_at"])
+        # Keep Django admin-site access aligned with the application role.
+        user.is_staff = user.role == User.ROLE_ADMIN
+        update_fields = ["role", "is_active", "is_staff", "updated_at"]
+        if user.role != User.ROLE_ADMIN:
+            # Demotion must revoke any lingering Django superuser privileges.
+            user.is_superuser = False
+            update_fields.append("is_superuser")
+        user.save(update_fields=update_fields)
         return Response(UserSerializer(user).data)

@@ -119,7 +119,7 @@ export default function Register() {
                 <Sparkles size={21} />
               </div>
               <div className="scott-brand-name">
-                <strong>SCOTT</strong>
+                <strong>SKelo</strong>
                 <span>Student Career & Learning Platform</span>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function Register() {
               <ShieldCheck size={17} />
               <div>
                 <strong>Secure student account</strong>
-                <span>Your details are used only for your SCOTT learning profile.</span>
+                <span>Your details are used only for your SKelo learning profile.</span>
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@ export default function Register() {
                 <Sparkles size={19} />
               </div>
               <div className="scott-brand-name">
-                <strong>SCOTT</strong>
+                <strong>SKelo</strong>
                 <span>Student Career & Learning Platform</span>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function Register() {
             <div className="scott-login-heading scott-register-heading">
               <div className="scott-heading-label">CREATE ACCOUNT</div>
               <h2>
-                Join <span>SCOTT.</span>
+                Join <span>SKelo.</span>
               </h2>
               <p>Create your student profile and begin your learning journey.</p>
             </div>
@@ -334,7 +334,7 @@ export default function Register() {
       </div>
 
       <div className="scott-login-footer">
-        <span>© 2026 SCOTT Student Platform</span>
+        <span>© 2026 SKelo Student Platform</span>
         <span className="footer-dot">•</span>
         <span>Secure student registration</span>
       </div>

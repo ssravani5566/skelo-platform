@@ -157,7 +157,7 @@ export default function CodeathonDetail() {
 
       {/* Event header */}
       <PageHeader
-        eyebrow={`SCOTT · ${
+        eyebrow={`SKelo · ${
           isHackathon ? "HACKATHON" : "CODING COMPETITION"
         }`}
         title={c.title}

@@ -89,3 +89,11 @@ Use `Management → External Coding → Sync live` to populate the Coding Arena 
 ## Coding Arena live catalog
 
 The Coding Arena automatically bootstraps the external question catalog on the first authenticated visit when the requested platform has no imported records. It stores live public metadata and the canonical problem URL in PostgreSQL; it does not create a hardcoded question list. Set `SCOTT_AUTO_SYNC=0` in `.env` to disable this behavior. You can also run `python manage.py sync_external_problems --platform LEETCODE --limit 5000` (and the equivalent platform commands) for an explicit refresh.
+
+## Security remediation notes (2026-10-28)
+- The migration no longer creates/elevates a shared administrator with a fixed password. A follow-up migration disables that known password if it remains on an existing database. Set a fresh admin password through a secure admin setup flow.
+- `DEBUG` now defaults to false and production settings require `SECRET_KEY` and `ALLOWED_HOSTS`. The `.env.example` documents development values; never use development settings in production.
+- Removed the hardcoded PostgreSQL fallback password, added DRF default throttling, and set upload memory limits.
+- Assessment answer writes enforce the backend duration; coding questions cannot be overwritten through generic answer endpoints. The frontend no longer submits raw coding editor text as an answer.
+- Codeathon problem visibility now checks publication and registration, and score awards use a transaction/row lock to prevent concurrent duplicate awards.
+- Python syntax was checked, but Django runtime checks and the frontend production build were not run successfully in this environment because Django is not installed here and the uploaded frontend dependency archive has Windows-only native build bindings. Run the setup instructions and tests in your development environment.

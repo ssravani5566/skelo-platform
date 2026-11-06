@@ -312,7 +312,7 @@ export default function Login({ onLogin }) {
               </div>
 
               <div className="scott-brand-name">
-                <strong>SCOTT</strong>
+                <strong>SKelo</strong>
                 <span>
                   Student Career & Learning Platform
                 </span>
@@ -360,7 +360,7 @@ export default function Login({ onLogin }) {
             <div className="scott-journey-section">
 
               <div className="scott-section-label">
-                YOUR JOURNEY WITH SCOTT
+                YOUR JOURNEY WITH SKelo
               </div>
 
               <div className="scott-journey">
@@ -476,13 +476,13 @@ export default function Login({ onLogin }) {
               <div className="scott-achievement-stats">
 
                 <div>
-                  <strong>10K+</strong>
-                  <span>Learners</span>
+                  <strong>Learn</strong>
+                  <span>Career skills</span>
                 </div>
 
                 <div>
-                  <strong>50+</strong>
-                  <span>Tracks</span>
+                  <strong>Practice</strong>
+                  <span>Learning paths</span>
                 </div>
 
               </div>
@@ -528,18 +528,18 @@ export default function Login({ onLogin }) {
             <div className="scott-company-stats">
 
               <div>
-                <strong>10K+</strong>
-                <span>Students</span>
+                <strong>Learn</strong>
+                <span>Learn at your pace</span>
               </div>
 
               <div>
-                <strong>50+</strong>
-                <span>Learning Tracks</span>
+                <strong>Practice</strong>
+                <span>Build your skills</span>
               </div>
 
               <div>
-                <strong>100+</strong>
-                <span>Coding Challenges</span>
+                <strong>Grow</strong>
+                <span>Coding practice</span>
               </div>
 
             </div>
@@ -547,7 +547,7 @@ export default function Login({ onLogin }) {
             <div className="scott-company-note">
               <Zap size={14} />
               <span>
-                SCOTT learning platform overview.
+                SKelo learning platform overview.
               </span>
             </div>
 
@@ -572,7 +572,7 @@ export default function Login({ onLogin }) {
               </div>
 
               <div className="scott-brand-name">
-                <strong>SCOTT</strong>
+                <strong>SKelo</strong>
                 <span>
                   Student Career & Learning Platform
                 </span>
@@ -880,7 +880,7 @@ export default function Login({ onLogin }) {
                 </strong>
 
                 <span>
-                  Your SCOTT account protects
+                  Your SKelo account protects
                   your learning journey.
                 </span>
               </div>
@@ -900,7 +900,7 @@ export default function Login({ onLogin }) {
       <div className="scott-login-footer">
 
         <span>
-          © 2026 SCOTT Student Platform
+          © 2026 SKelo Student Platform
         </span>
 
         <span className="footer-dot">

@@ -9,6 +9,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import Dashboard from "./pages/Dashboard";
 import Calendar from "./pages/Calendar";
+import Schedule from "./pages/Schedule";
 import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
 import Courses from "./pages/courses/Courses";
@@ -60,6 +61,7 @@ export default function App() {
     <Route path="/verify-email" element={<VerifyEmail />} />
     <Route path="/" element={<Protected><Dashboard user={user} /></Protected>} />
     <Route path="/calendar" element={<Protected><Calendar /></Protected>} />
+    <Route path="/schedule" element={<Protected><Schedule /></Protected>} />
     <Route path="/profile" element={<Protected><Profile user={user} onUpdate={setUser} /></Protected>} />
     <Route path="/search" element={<Protected><SearchResults /></Protected>} />
     <Route path="/courses" element={<Protected><Courses /></Protected>} />

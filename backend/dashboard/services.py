@@ -7,7 +7,8 @@ from assignments.models import Assignment, AssignmentSubmission
 from assessments.models import Assessment, StudentAssessment
 from codeathons.models import Codeathon, CodeathonParticipant
 from courses.models import Course, CourseProgress, Lesson, LessonProgress
-from gamification.models import XPTransaction, StudentStreak
+from gamification.models import XPTransaction
+from gamification.services import active_streak
 from interviews.models import Interview
 from notifications.models import Notification
 from students.services import get_student_profile
@@ -20,7 +21,7 @@ def student_dashboard(user):
     for c in course_qs:
         total=Lesson.objects.filter(module__course=c,is_published=True).count(); done=LessonProgress.objects.filter(student=student,lesson__module__course=c,completed=True).count(); pct=round(done/total*100,2) if total else 0
         course_data.append({"id":c.id,"title":c.title,"category":c.category,"progress":pct,"lessons":total,"completed":done,"level":c.level})
-    xp=sum(XPTransaction.objects.filter(student=student).values_list("points",flat=True)); streak,_=StudentStreak.objects.get_or_create(student=student)
+    xp=sum(XPTransaction.objects.filter(student=student).values_list("points",flat=True)); streak=active_streak(student)
     solved=student.submissions.filter(status="ACCEPTED").values("problem_id").distinct().count()
     att_total=student.attendance_records.count(); att_present=student.attendance_records.filter(status__in=["PRESENT","LATE"]).count(); attendance=round(att_present/att_total*100,2) if att_total else 0
     focus=[]

@@ -33,7 +33,7 @@ export default function CodeathonManager({data=[],onDone}) {
    <section className="ct-admin-main">
     <DetailPanel title={selected?`Edit event · ${selected.title}`:"Create a Codeathon"}>
      <form className="ct-admin-form" onSubmit={e=>save(e,false)}>
-      <label className="wide">Event title<input name="title" value={form.title} onChange={change} required placeholder="e.g. SCOTT Algorithm Sprint"/></label>
+      <label className="wide">Event title<input name="title" value={form.title} onChange={change} required placeholder="e.g. SKelo Algorithm Sprint"/></label>
       <label>Event type<select name="event_type" value={form.event_type} onChange={change}><option value="CODING">Coding competition</option><option value="HACKATHON">Hackathon</option></select></label>
       <label>Category<input name="category" value={form.category} onChange={change} placeholder="DSA, AI, Web development"/></label>
       <label className="wide">Description<textarea name="description" rows="3" value={form.description} onChange={change} placeholder="Describe the event, goals and who should participate."/></label>

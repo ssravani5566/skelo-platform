@@ -5,7 +5,7 @@ from students.services import get_student_profile
 from .models import Badge, XPTransaction, StudentStreak, StudentBadge
 from .serializers import XPTransactionSerializer
 from .serializers import BadgeSerializer, StreakSerializer, StudentBadgeSerializer
-from .services import gamification_summary
+from .services import gamification_summary, update_streak, active_streak
 from core.api import paginated_response
 class HealthView(APIView):
     permission_classes=[IsAuthenticated]
@@ -30,7 +30,11 @@ class StreakView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request):
         if request.user.role!="STUDENT": return Response({"detail":"Student access required."},status=403)
-        return Response(StreakSerializer(StudentStreak.objects.get_or_create(student=get_student_profile(request.user))[0]).data)
+        return Response(StreakSerializer(active_streak(get_student_profile(request.user))).data)
+    def post(self,request):
+        if request.user.role!="STUDENT": return Response({"detail":"Student access required."},status=403)
+        streak=update_streak(get_student_profile(request.user))
+        return Response(StreakSerializer(streak).data)
 class StudentBadgeView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request):

@@ -1,19 +1,10 @@
 from django.db import migrations, models
-from django.contrib.auth.hashers import make_password
 
 
-def seed_admin(apps, schema_editor):
-    User = apps.get_model("accounts", "User")
-    user = User.objects.filter(username="Admin").first() or User.objects.filter(email__iexact="admin@scott.local").first()
-    if user is None:
-        user = User(username="Admin", email="admin@scott.local")
-    user.role = "ADMIN"
-    user.is_staff = True
-    user.is_superuser = True
-    user.is_active = True
-    user.is_email_verified = True
-    user.password = make_password("Admin@1234")
-    user.save()
+def do_not_seed_admin(apps, schema_editor):
+    # Admin accounts must be created through the management command or secure setup flow.
+    # Never assign a shared password or elevate a user during schema migration.
+    pass
 
 class Migration(migrations.Migration):
     dependencies = [("assessments", "0001_initial"), ("accounts", "0001_initial")]
@@ -24,5 +15,5 @@ class Migration(migrations.Migration):
         migrations.AddField(model_name="question", name="output_format", field=models.TextField(blank=True)),
         migrations.AddField(model_name="question", name="constraints", field=models.TextField(blank=True)),
         migrations.AddField(model_name="question", name="test_cases", field=models.JSONField(blank=True, default=list)),
-        migrations.RunPython(seed_admin, migrations.RunPython.noop),
+        migrations.RunPython(do_not_seed_admin, migrations.RunPython.noop),
     ]

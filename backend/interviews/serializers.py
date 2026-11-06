@@ -21,5 +21,5 @@ class InterviewSerializer(serializers.ModelSerializer):
     feedback=InterviewFeedbackSerializer(read_only=True)
     class Meta:
         model=Interview
-        fields=["id","title","interview_type","student","interviewer","scheduled_at","status","role","overall_score","created_at","feedback"]
+        fields=["id","title","interview_type","student","interviewer","scheduled_at","status","role","company","difficulty","duration_minutes","interview_mode","technical_topics","is_published","overall_score","created_at","feedback"]
         read_only_fields=["created_at","overall_score"]

@@ -88,3 +88,25 @@ export const auth = {
 
 export function unwrapList(data) { return Array.isArray(data) ? data : (data?.results || data?.data || []); }
 export default api;
+
+export async function getProtectedBlob(url) {
+  const { data } = await api.get(url, { responseType: "blob" });
+  return data;
+}
+
+export async function downloadProtectedFile(url, preferredName = "course-resource") {
+  const { data, headers } = await api.get(url, { responseType: "blob" });
+  const disposition = headers["content-disposition"] || "";
+  const match = disposition.match(/filename\*?=(?:UTF-8''|\")?([^\";]+)/i);
+  const serverName = match?.[1] ? decodeURIComponent(match[1]) : "course-resource";
+  const preferredHasExtension = /\.[a-z0-9]{1,8}$/i.test(preferredName || "");
+  const filename = preferredHasExtension ? preferredName : serverName;
+  const objectUrl = window.URL.createObjectURL(data);
+  const anchor = document.createElement("a");
+  anchor.href = objectUrl;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.URL.revokeObjectURL(objectUrl);
+}

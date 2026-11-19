@@ -20,6 +20,7 @@ import PageHeader from "../../components/PageHeader";
 import CodeathonManager from "./CodeathonManager";
 import InterviewManager from "./InterviewManager";
 import AttendanceManager from "./AttendanceManager";
+import CourseAdminManager from "./CourseAdminManager";
 import { Badge, DetailPanel } from "../../components/ModuleCard";
 import { ErrorState, Loading } from "../../components/AsyncState";
 import {
@@ -213,7 +214,7 @@ export default function Management() {
       ) : tab === "Users" ? (
         <UsersManager data={data} onRole={roleChange} />
       ) : tab === "Courses" ? (
-        <CourseManager data={data} onDone={done} />
+        <CourseAdminManager />
       ) : tab === "Assessments" ? (
         <AssessmentManager data={data} onDone={done} />
       ) : tab === "Results" ? (
